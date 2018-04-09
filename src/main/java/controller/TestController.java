@@ -21,4 +21,9 @@ public class TestController {
 		System.out.println(accountNum);
         return "demo/hello"; 
 	}
+	
+	@RequestMapping("/test")  
+	public String test(){
+		return "demo/hello";
+	}
 }
