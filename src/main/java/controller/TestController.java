@@ -16,7 +16,7 @@ public class TestController {
 	private SqlSessionTemplate sqlSession;
 	@RequestMapping("/good")  
     public String toIndex(HttpServletRequest request,Model model){
-		System.out.println("nihaoma? 我很好");
+		System.out.println("nihaoma?我们都一样,其实也一样");
 		String accountNum = sqlSession.selectOne("test.findUserById",1);
 		System.out.println(accountNum);
         return "demo/hello"; 
