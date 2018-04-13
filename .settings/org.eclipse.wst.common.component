@@ -5,7 +5,6 @@
         <wb-resource deploy-path="/WEB-INF/classes" source-path="/src/main/resources"/>
         <wb-resource deploy-path="/" source-path="/WebContent"/>
         <wb-resource deploy-path="/WEB-INF/classes" source-path="/pattern"/>
-        <wb-resource deploy-path="/WEB-INF/classes" source-path="/sun"/>
         <property name="java-output-path" value="/hero_pro/target/classes"/>
         <property name="context-root" value="hero_pro"/>
     </wb-module>
