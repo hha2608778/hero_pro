@@ -8,6 +8,8 @@ import org.junit.Before;
 import java.util.HashMap;
 import java.util.Iterator;
 import redis.clients.jedis.Jedis;
+import util.JsonUtil;
+import vo.UserVo;
  
 public class JedisUtilTest {
     private Jedis jedis; 
@@ -15,11 +17,33 @@ public class JedisUtilTest {
     @Before
     public void setup() {
         //连接redis服务器，192.168.0.100:6379
-        //jedis = new Jedis("127.0.0.1", 6379);
-        jedis = JedisPoolUtil.getJedis();
+        //jedis = new Jedis("10.10.10.142", 6379);
+        //jedis = JedisPoolUtil.getJedis();
         //权限认证
         //jedis.auth("admin");  
     }
+    
+    @Test
+    public void TestJedisUtil(){
+    	UserVo vo = new UserVo();
+    	vo.setAge(1);
+    	vo.setUserName("wangquancheng");
+    	vo.setUserNum("a250");
+    	//String a = JedisUtil.get("a");
+    	JedisUtil.set("good", JsonUtil.beanToJson(vo), 60);
+    	String json = JedisUtil.get("good");
+    	try {
+    		UserVo temp =  JsonUtil.getBean(json, UserVo.class);
+    		System.out.println("--------------"+temp.getUserName());
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+    }
+
+    
+    
+    
+    
     
     /**
      * redis存储字符串
