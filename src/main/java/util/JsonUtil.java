@@ -1,6 +1,8 @@
 package util;
 
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 import java.util.HashMap;
 import com.alibaba.fastjson.JSON;
@@ -39,6 +41,7 @@ public class JsonUtil {
             return null;
         }
     }
+    
 
     /**
      * String转JSON字符串
@@ -57,30 +60,37 @@ public class JsonUtil {
     }
 
     /**
-     * 将json字符串转换成对象
-     * 
-     * @param json
-     * @param clazz
-     * @return
-     */
-    public static Object jsonToBean(String json, Object clazz) {
-        if (StringUtils.isEmpty(json) || clazz == null) {
-            return null;
-        }
-        return JSON.parseObject(json, clazz.getClass());
-    }
+    * 用fastjson 将json字符串解析为一个 JavaBean
+    * 
+    * @param jsonString
+    * @param cls
+    * @return
+    */
+   public static <T> T getBean(String jsonString, Class<T> cls) {
+       T t = null;
+       try {
+           t = JSON.parseObject(jsonString, cls);
+       } catch (Exception e) {
+           // TODO: handle exception
+           e.printStackTrace();
+       }
+       return t;
+   }
 
-    /**
-     * json字符串转map
-     * 
-     * @param json
-     * @return
-     */
-    @SuppressWarnings("unchecked")
-    public static Map<String, Object> jsonToMap(String json) {
-        if (StringUtils.isEmpty(json)) {
-            return null;
-        }
-        return JSON.parseObject(json, Map.class);
-    }
+   /**
+    * 用fastjson 将json字符串 解析成为一个 List<JavaBean> 及 List<String>
+    * 
+    * @param jsonString
+    * @param cls
+    * @return
+    */
+   public static <T> List<T> getBeans(String jsonString, Class<T> cls) {
+       List<T> list = new ArrayList<T>();
+       try {
+           list = JSON.parseArray(jsonString, cls);
+       } catch (Exception e) {
+           // TODO: handle exception
+       }
+       return list;
+   }
 }

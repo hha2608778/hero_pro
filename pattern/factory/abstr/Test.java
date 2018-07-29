@@ -11,10 +11,8 @@ public class Test {
 	 * @param args
 	 */
 	public static void main(String[] args) {
-		
 		MilkFactory mf = new MilkFactory();
 		System.out.println(mf.getMengniuMilk().getName());
-
 	}
 
 }
