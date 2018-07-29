@@ -77,7 +77,7 @@ public final class JedisPoolUtil {
      */
     public static void closeJedis(Jedis jedis) {
 		if (jedis != null) {
-			jedis.close();
+			jedisPool.returnBrokenResource(jedis);
 		}
 	}
 
